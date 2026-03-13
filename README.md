@@ -1,25 +1,26 @@
-# 🚀 Cypress BDD Test Framework with Azure CI/CD
+# 🚀 Cypress BDD & POM Framework with Azure CI/CD
 
-This project serves as a **Proof of Concept (PoC)** to demonstrate a modern, scalable **Behavior Driven Development (BDD)** testing framework. It utilizes Cypress with Cucumber integration and is fully automated via **Azure Pipelines** for continuous integration.
+This project is a **Professional Proof of Concept (PoC)** demonstrating a scalable automated testing framework. It combines **Behavior Driven Development (BDD)** with the **Page Object Model (POM)** pattern, fully integrated into an **Azure DevOps CI/CD pipeline**.
 
 ## 🌟 Key Features
-* **BDD Approach:** Uses Gherkin syntax (`.feature` files) to bridge the gap between technical and non-technical stakeholders.
-* **Data-Driven Testing:** Showcases the use of different test values and environment configurations.
-* **Azure DevOps Integration:** Features a fully functional CI/CD pipeline that triggers on every push to validate code quality.
-* **Cloud Reporting:** Artifacts and test results are captured and stored within the [Azure Pipeline Runs](https://dev.azure.com/ushakollu123/cypressLamdaTest/_build).
+* **BDD Integration:** Uses Gherkin syntax (`.feature` files) to create human-readable test scenarios.
+* **Page Object Model (POM):** Enhances maintainability by separating page-specific locators and methods (see [`loginPage.js`](https://github.com/usharkollu/cypressLambda/blob/main/cypress/e2e/pages/loginPage.js)) from the test logic.
+* **Data-Driven Testing:** Demonstrates how to pass different values through BDD step definitions.
+* **Azure DevOps CI/CD:** Automated validation via [Azure Pipelines](https://dev.azure.com/ushakollu123/cypressLamdaTest/_build), ensuring every pull request is tested before merging.
 
 ## 🏗️ Tech Stack
 * **Testing Framework:** [Cypress](https://www.cypress.io/)
-* **BDD Plugin:** Cypress-Cucumber-Preprocessor
-* **Runtime:** Node.js 20.x
-* **CI/CD:** [Azure DevOps Pipelines](https://dev.azure.com/ushakollu123/cypressLamdaTest/)
-* **Cloud Hosting:** [Azure App Service](https://portal.azure.com/)
+* **Design Patterns:** BDD (Cucumber/Gherkin) & Page Object Model (POM)
+* **CI/CD Tooling:** [Azure DevOps Pipelines](https://dev.azure.com/ushakollu123/cypressLamdaTest/)
+* **Infrastructure:** [Azure App Service](https://portal.azure.com/)
 
 ## 📂 Project Structure
 ```text
-├── azure-pipelines.yml    # Main CI/CD configuration for Azure DevOps
+├── azure-pipelines.yml    # Azure DevOps Pipeline configuration
 ├── cypress/
-│   ├── e2e/               # Feature files and step definitions
-│   └── support/           # Custom commands and global hooks
-├── package.json           # Scripts and dependencies
-└── cypress.config.js      # Cypress environment settings
+│   ├── e2e/
+│   │   ├── features/      # Gherkin .feature files
+│   │   ├── pages/         # Page Object classes (POM)
+│   │   └── step_defs/     # Glue code linking Gherkin to POM
+├── package.json           # Project dependencies and test scripts
+└── cypress.config.js      # Cypress configuration
