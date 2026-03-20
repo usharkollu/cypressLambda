@@ -1,3 +1,4 @@
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -23,3 +24,21 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+const loginPage = require('../e2e/pages/loginPage.js');
+Cypress.Commands.add('loginSession', (username, password) => {
+  // cy.session caches the cookies/localStorage/sessionStorage
+  cy.session([username, password], () => {
+    cy.visit('/');
+    
+    // Perform login steps
+    loginPage.getUserName().clear().type(username);
+    loginPage.getUserPassword().clear().type(password);
+    loginPage.getSubmitButton().click();
+    
+    // Validate we are actually logged in before caching
+    cy.url().should('include', '/inventory.html');
+
+  }, {
+    cacheAcrossSpecs: true // Keeps you logged in even if you change feature files
+  });
+});
