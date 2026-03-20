@@ -4,6 +4,9 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+- group: cyoress-secrets  # This links your Library group
+
 steps:
 - task: NodeTool@0
   inputs:
@@ -12,8 +15,11 @@ steps:
 
 - script: |
     npm install
-    npm test
+    npm run smoke
   displayName: 'npm install and test'
+  env:
+    CYPRESS_APP_USERNAME: $(APP_USERNAME)
+    CYPRESS_APP_PASSWORD: $(APP_PASSWORD)
 
 # This part prepares the files for Azure
 - task: ArchiveFiles@2

@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "cypress run"
+    "test": "cypress open",
+    "smoke": "cypress run --env environmentName=prod --env tags='@smoke'",
+    "regression": "cypress run --env environmentName=prod --env tags='@regression'",
+    "home:prod": "cypress run --env environmentName=prod --env tags='@home and @prod'"
   },
   "author": "",
   "license": "ISC",
